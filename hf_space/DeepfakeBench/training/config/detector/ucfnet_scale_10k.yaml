@@ -1,0 +1,76 @@
+# UCF-Net ViT-L/DINOv2-L LoRA-r4 ablation: dense MoE with global-mean MLP gate.
+
+log_dir: ./logs/ucfnet
+model_name: ucfnet
+task_target: scale_10k
+backbone_name: clip_dinov2
+clip: {variant: vit_l_14, scale: large, model_path: ../pretrained/clip-vit-large-patch14-local, ckpt_path: null, patch_size: 14}
+dino: {version: v2, scale: large, weights: ../pretrained/dinov2_vitl14_reg4_pretrain.pth}
+lora: {enabled: true, rank: 2, alpha: 4.0, dropout: 0.0, target_modules: [q_proj, v_proj, qkv], apply_to: both}
+ablation: {layer_aggregation: moe, moe_top_k: all, moe_balance_weight: 0.0, fusion: uncertainty, moe_gate_mode: global_mean, moe_gate_shared_scorer: mlp, moe_expert_mode: shared_residual_bottleneck, moe_bottleneck_dim: 256}
+loss_func: focal_loss
+focal_alpha: 0.5
+focal_gamma: 2.0
+loss_reduction: mean
+swa_enabled: false
+swa_start_epoch: 7
+swa_lr: 0.00001
+pretrained: null
+backbone_config: {mode: original, num_classes: 2, inc: 3, dropout: false}
+dataset_json_folder: dataset_json/ffpp
+image_data_json:
+  enabled: true
+  root: ../UCF-Net-dataset
+  train: ../UCF-Net-dataset/splits/scale/train_10k.json
+  val: ../UCF-Net-dataset/splits/val.json
+  label_map: {real: 0, fake: 1}
+all_dataset: [image-data-train, image-data-val]
+train_dataset: [image-data-train]
+test_dataset: [image-data-val]
+compression: c23
+train_batchSize: 20
+test_batchSize: 20
+workers: 4
+pin_memory: true
+persistent_workers: true
+prefetch_factor: 4
+grad_accum_steps: 1
+frame_num: {train: 100000, test: 100000}
+resolution: 224
+with_mask: false
+with_landmark: false
+use_data_augmentation: true
+data_aug:
+  flip_prob: 0.5
+  rotate_prob: 0.5
+  rotate_limit: [-10, 10]
+  blur_prob: 0.5
+  blur_limit: [3, 7]
+  brightness_prob: 0.5
+  brightness_limit: [-0.1, 0.1]
+  contrast_limit: [-0.1, 0.1]
+  quality_lower: 40
+  quality_upper: 100
+mean: [0.485, 0.456, 0.406]
+std: [0.229, 0.224, 0.225]
+optimizer:
+  type: adamw
+  adamw: {lr: 0.0001, beta1: 0.9, beta2: 0.999, eps: 0.00000001, weight_decay: 0.02, amsgrad: false}
+  adam: {lr: 0.0002, beta1: 0.9, beta2: 0.999, eps: 0.00000001, weight_decay: 0.0005, amsgrad: false}
+  sgd: {lr: 0.0002, momentum: 0.9, weight_decay: 0.0005}
+lr_scheduler: warmup_cosine
+warmup_epochs: 1
+lr_eta_min: 0.000001
+nEpochs: 10
+start_epoch: 0
+save_epoch: 1
+rec_iter: 100
+logdir: ./logs
+manualSeed: 1024
+save_ckpt: true
+save_feat: false
+metric_scoring: auc
+ngpu: 1
+cuda: true
+cudnn: true
+save_avg: true

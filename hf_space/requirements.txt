@@ -1,0 +1,16 @@
+torchvision
+spaces
+huggingface_hub
+albumentations
+efficientnet-pytorch
+ftfy
+numpy<2
+opencv-python-headless
+Pillow
+PyYAML
+scikit-image
+scikit-learn
+scipy
+tqdm
+transformers==4.30.2
+yacs

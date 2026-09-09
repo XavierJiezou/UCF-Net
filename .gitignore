@@ -1,0 +1,68 @@
+# Large local assets
+envs/
+data/
+artifacts/
+clip-vit*-local/
+DeepfakeBench/checkpoint/
+DeepfakeBench/logs/
+checkpoint/
+pretrained/
+UCF-Net-dataset/
+DeepfakeBench/dataset_json/
+*.pth
+*.pt
+*.bin
+*.msgpack
+*.safetensors
+
+# Runtime outputs
+.runtime/
+analysis/
+eval_logs/
+runs/
+DeepfakeBench/dataset_json/df40_official_download/
+DeepfakeBench/dataset_json/ffpp/
+eval_runs/
+eval_micv_outputs/
+# results/
+tools/
+*.npz
+*.npy
+*.log
+nohup.out
+
+# Local experiment configs
+DeepfakeBench/training/config/detector-v*/
+DeepfakeBench/training/config/detector_ori/
+DeepfakeBench/training/config/detector/dual_branch*.yaml
+sh/
+
+# Python/cache/editor noise
+__pycache__/
+*.py[cod]
+*.pyo
+*.swp
+*.swo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local/private files
+.codex/
+auth.json
+codex*
+*.pdf
+tech.md
+eval.md
+
+# Secrets (token lives here, never committed)
+scripts/.env.local
+*.env.local
+
+# Host-specific libcuda shim created during setup (see README troubleshooting)
+.libfix/
+
+_verify_extract.*
+
+# Keep source scripts tracked; ignore generated results only.
+results/
