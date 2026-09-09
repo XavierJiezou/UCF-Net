@@ -9,12 +9,13 @@
 An Uncertainty-Aware Cascaded Fusion Network for Generalizable Deepfake Image Detection
 
 [![Project Page](https://img.shields.io/badge/Project%20Page-UCF--Net-blue)](https://xavierjiezou.github.io/UCF-Net/)
+[![arXiv](https://img.shields.io/badge/arXiv-2609.07670-b31b1b.svg)](https://arxiv.org/abs/2609.07670)
+<br>
+[![HuggingFace Paper](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Daily%20Paper-blue)](https://huggingface.co/papers/2609.07670)
 [![HuggingFace Space](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Space-yellow)](https://huggingface.co/spaces/csYiZhou/UCF-Net)
 [![HuggingFace Models](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Models-green)](https://huggingface.co/XavierJiezou/ucfnet-models)
 [![HuggingFace Datasets](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Datasets-orange)](https://huggingface.co/datasets/XavierJiezou/ucfnet-datasets)
 <!--[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)-->
-[![arXiv](https://img.shields.io/badge/arXiv-2609.07670-b31b1b.svg)](https://arxiv.org/abs/2609.07670)
-[![HuggingFace Paper](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Daily%20Paper-blue)](https://huggingface.co/papers/2609.07670)
 
 ![framework](docs/framework.png)
 
