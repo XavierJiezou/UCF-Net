@@ -1,0 +1,78 @@
+/* Final desktop layout polish: wording unchanged; only card sizing and spacing. */
+
+/* Motivation: do not force the short, wide figure to match the taller text card. */
+#motivation .motivation-layout {
+  align-items: start !important;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr) !important;
+}
+
+#motivation .motivation-copy,
+#motivation .case-figure {
+  align-self: start !important;
+  min-height: 0 !important;
+  height: fit-content !important;
+}
+
+#motivation .case-figure {
+  padding: 10px !important;
+  overflow: hidden !important;
+}
+
+#motivation .case-columns {
+  margin-bottom: 6px !important;
+}
+
+#motivation .case-image {
+  display: none;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+#motivation .case-image.active {
+  display: block;
+}
+
+#motivation .figure-expand {
+  position: static !important;
+  display: block !important;
+  width: fit-content !important;
+  margin: 10px 4px 0 auto !important;
+  padding: 7px 11px !important;
+  color: var(--academic-accent) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Keep the case summary compact and avoid a visually empty lower half. */
+#motivation .case-text {
+  min-height: 0 !important;
+}
+
+#motivation .legend-inline {
+  margin-top: 8px !important;
+}
+
+/* Benchmark figure: remove excess card padding without cropping the paper figure. */
+#benchmark .benchmark-paper-figure {
+  margin-top: 0 !important;
+}
+
+#benchmark .benchmark-paper-figure .paper-figure-card {
+  padding: 14px 14px 10px !important;
+}
+
+#benchmark .benchmark-paper-figure .paper-figure-card > img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 10px 0 0 !important;
+  object-fit: contain !important;
+}
+
+#benchmark .benchmark-stats {
+  margin-top: 22px !important;
+}

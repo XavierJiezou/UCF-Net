@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="UCF-Net: an uncertainty-aware cascaded fusion network that harnesses CLIP's language-aligned semantic priors with DINO's self-supervised visual-structure priors for generalizable deepfake image detection." name="description"/>
+<meta content="#eef2f8" name="theme-color"/>
+<meta content="website" property="og:type"/>
+<meta content="UCF-Net — Generalizable Deepfake Image Detection" property="og:title"/>
+<meta content="UCF-Net harnesses CLIP's language-aligned semantic priors with DINO's self-supervised visual-structure priors through uncertainty-aware cascaded fusion." property="og:description"/>
+<meta content="https://xavierjiezou.github.io/UCF-Net/" property="og:url"/>
+<meta content="https://xavierjiezou.github.io/UCF-Net/assets/img/motivation.webp" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="UCF-Net — Generalizable Deepfake Image Detection" name="twitter:title"/>
+<meta content="UCF-Net harnesses CLIP's language-aligned semantic priors with DINO's self-supervised visual-structure priors through uncertainty-aware cascaded fusion." name="twitter:description"/>
+<meta content="https://xavierjiezou.github.io/UCF-Net/assets/img/motivation.webp" name="twitter:image"/>
+<link href="https://xavierjiezou.github.io/UCF-Net/" rel="canonical"/>
+<link href="assets/favicon.png?v=20260807" rel="icon" sizes="194x194" type="image/png"/>
+<title>UCF-Net</title>
+<script>document.documentElement.classList.add('js');</script>
+<link href="assets/css/style.css?v=no-efficiency-v1" rel="stylesheet"/>
+<link href="assets/css/audit-refinements.css?v=20260801" rel="stylesheet"/>
+<link href="assets/css/final-release.css?v=abstract-color-final-v1" rel="stylesheet"/>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Harnessing CLIP and DINO: An Uncertainty-Aware Cascaded Fusion Network for Generalizable Deepfake Image Detection",
+    "author": [
+      {"@type":"Person","name":"Xuechao Zou"},
+      {"@type":"Person","name":"Yi Zhou"},
+      {"@type":"Person","name":"Kai Li"},
+      {"@type":"Person","name":"Shun Zhang"},
+      {"@type":"Person","name":"Yuhui Chen"},
+      {"@type":"Person","name":"Congyan Lang"},
+      {"@type":"Person","name":"Junliang Xing"}
+    ]
+  }
+  </script>
+<link href="assets/css/paper-template-v2.css?v=academic-palette-final-20260804" rel="stylesheet"/><link href="assets/css/academic-corrections.css?v=20260804-final" rel="stylesheet"/><link href="assets/css/content-preserving-final.css?v=20260804" rel="stylesheet"/><link href="assets/css/spacing-final.css?v=20260804-whitespace-fixed" rel="stylesheet"/><link href="assets/css/final-layout-polish.css?v=20260804-final-layout" rel="stylesheet"/><link href="assets/css/feedback-final.css?v=20260805-case-and-crop-final" rel="stylesheet"/><link href="assets/css/final-senior-review.css?v=20260807-final" rel="stylesheet"/><link href="assets/css/final-content-preserved-layout.css?v=20260807" rel="stylesheet"/><link href="assets/css/final-figure-balance.css?v=20260807" rel="stylesheet"/><link href="assets/css/taxonomy-compact-final.css?v=20260807-compact" rel="stylesheet"/><link href="assets/css/final-doc-alignment.css?v=20260807" rel="stylesheet"/></head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<main id="main-content">
+<section class="hero academic-paper-hero" id="overview">
+<div class="container publication-header reveal visible">
+<h1 class="paper-title academic-paper-title">Harnessing CLIP and DINO: An Uncertainty-Aware Cascaded Fusion Network for Generalizable Deepfake Image Detection</h1>
+<div aria-label="Authors" class="authors">
+<div class="author-row">
+<span>Xuechao Zou<sup>1</sup></span><span aria-hidden="true" class="author-separator">·</span>
+<span>Yi Zhou<sup>1</sup></span><span aria-hidden="true" class="author-separator">·</span>
+<span>Kai Li<sup>2</sup></span><span aria-hidden="true" class="author-separator">·</span>
+<span>Shun Zhang<sup>1</sup></span><span aria-hidden="true" class="author-separator">·</span>
+<span>Yuhui Chen<sup>3</sup></span><span aria-hidden="true" class="author-separator">·</span>
+<span>Congyan Lang<sup>1</sup></span><span aria-hidden="true" class="author-separator">·</span>
+<span>Junliang Xing<sup>2</sup></span>
+</div>
+</div>
+<div class="affiliations">
+<span><sup>1</sup> Beijing Jiaotong University</span><span aria-hidden="true" class="affiliation-separator">·</span>
+<span><sup>2</sup> Tsinghua University</span><span aria-hidden="true" class="affiliation-separator">·</span>
+<span><sup>3</sup> Ant Group</span>
+</div>
+<div class="hero-actions">
+<a class="button button-secondary" href="https://arxiv.org/abs/2609.07670" rel="noopener" target="_blank"><svg aria-hidden="true" class="arxiv-icon" style="fill: currentColor; stroke: none;" viewbox="0 0 24 24"><path d="M3.8423 0a1.0037 1.0037 0 0 0-.922.6078c-.1536.3687-.0438.6275.2938 1.1113l6.9185 8.3597-1.0223 1.1058a1.0393 1.0393 0 0 0 .003 1.4229l1.2292 1.3135-5.4391 6.4444c-.2803.299-.4538.823-.2971 1.1986a1.0253 1.0253 0 0 0 .9585.635.9133.9133 0 0 0 .6891-.3405l5.783-6.126 7.4902 8.0051a.8527.8527 0 0 0 .6835.2597.9575.9575 0 0 0 .8777-.6138c.1577-.377-.017-.7502-.306-1.1407l-7.0518-8.3418 1.0632-1.13a.9626.9626 0 0 0 .0089-1.3165L4.6336.4639s-.3733-.4535-.768-.463zm0 .272h.0166c.2179.0052.4874.2715.5644.3639l.005.006.0052.0055 10.169 10.9905a.6915.6915 0 0 1-.0072.945l-1.0666 1.133-1.4982-1.7724-8.5994-10.39c-.3286-.472-.352-.6183-.2592-.841a.7307.7307 0 0 1 .6704-.4401Zm14.341 1.5701a.877.877 0 0 0-.6554.2418l-5.6962 6.1584 1.6944 1.8319 5.3089-6.5138c.3251-.4335.479-.6603.3247-1.0292a1.1205 1.1205 0 0 0-.9763-.689zm-7.6557 12.2823 1.3186 1.4135-5.7864 6.1295a.6494.6494 0 0 1-.4959.26.7516.7516 0 0 1-.706-.4669c-.1119-.2682.0359-.6864.2442-.9083l.0051-.0055.0047-.0055z"></path></svg> Paper</a>
+<a class="button button-secondary" href="https://github.com/XavierJiezou/UCF-Net" rel="noopener" target="_blank"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.55 9.55 0 0 1 12 6.7c.85 0 1.7.11 2.5.34 1.9-1.29 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path></svg> Code</a>
+<a class="button button-secondary" href="https://huggingface.co/XavierJiezou/ucfnet-models" rel="noopener" target="_blank"><img alt="" aria-hidden="true" class="hf-icon" src="assets/img/huggingface.svg"/> Models</a>
+<a class="button button-secondary" href="https://huggingface.co/datasets/XavierJiezou/ucfnet-datasets" rel="noopener" target="_blank"><img alt="" aria-hidden="true" class="hf-icon" src="assets/img/huggingface.svg"/> Dataset</a>
+</div>
+</div>
+<div aria-label="Key results" class="container metrics-grid reveal visible">
+<article><strong>4,081,316</strong><span>Benchmark images</span></article>
+<article><strong>8,807</strong><span>RECENT GENERATOR FACES</span></article>
+<article><strong>95.33</strong><span>In-domain mAUC</span></article>
+<article><strong>92.15</strong><span>Cross-domain mAUC</span></article>
+</div>
+</section>
+<section aria-labelledby="abstract-title" class="section abstract-section" id="abstract">
+<div class="container abstract-layout reveal">
+<div class="abstract-heading">
+<p aria-hidden="true" class="kicker">Abstract</p>
+<h2 class="sr-only" id="abstract-title">Abstract</h2>
+</div>
+<div class="abstract-copy">
+<p>The growing realism and accessibility of manipulated and generated faces threaten the trustworthiness of digital media. To detect such forgeries, deepfake detectors based on vision foundation models have shown promising performance, but they typically rely on a single pretrained representation and are prone to overfitting to particular training distributions. To improve generalization to unseen forgeries, we propose UCF-Net, an uncertainty-aware cascaded fusion network that harnesses CLIP's language-aligned semantic priors and DINO's self-supervised visual-structure priors. UCF-Net extracts hierarchical features across Transformer depths, uses layer-wise expert aggregation to adaptively combine each encoder's multi-level cues, and performs weighted fusion of the resulting representations based on entropy-derived uncertainty. We further consolidate public deepfake datasets into a unified benchmark of approximately 4M images and construct a separate cross-generator evaluation set with over 8K face images from eight recent generators. On the unified benchmark, UCF-Net achieves the best mean AUC among the evaluated methods in both in-domain and cross-domain evaluations. On the cross-generator set, it adapts effectively with limited target-domain data, although zero-shot transfer remains challenging.</p>
+</div>
+</div>
+</section>
+<section class="section section-tint" id="motivation">
+<div class="container centered-heading reveal">
+<p class="kicker">Motivation</p>
+<h2>CLIP and DINO capture distinct evidence patterns</h2>
+<p>Their distinct evidence patterns and failure modes motivate uncertainty-aware fusion.</p>
+</div>
+<div class="container motivation-paper-figure reveal"><figure class="motivation-full-figure"><button class="motivation-full-button" data-caption="Figure 1: Motivation for harnessing CLIP and DINO" data-lightbox="assets/img/vector/motivation.svg" type="button"><img alt="Figure 1 comparing CLIP-based, DINO-based, and UCF-Net predictions across three fake-face examples" decoding="async" loading="lazy" src="assets/img/motivation.webp"/></button><figcaption>Figure 1. CLIP- and DINO-based detectors exhibit different failure patterns on the shown examples; UCF-Net remains correct when either or both individual encoders fail.</figcaption></figure></div>
+</section>
+<section class="section method-section" id="method">
+<div class="container split-heading reveal">
+<div><p class="kicker">Method</p><h2>Harnessing CLIP and DINO priors with uncertainty-aware cascaded fusion</h2></div>
+<p class="section-intro">UCF-Net preserves hierarchical CLIP and DINO cues, adaptively aggregates multi-level features, and fuses the resulting representations according to uncertainty.</p>
+</div>
+<div class="container compact-method-grid">
+<article class="compact-method-card method-blue reveal">
+<div class="compact-method-copy"><small>CLIP-DINO Feature Modeling</small><h3>Retain hierarchical representations</h3><p>Keep multi-level CLIP and DINO features.</p></div>
+<div aria-label="CLIP and DINO hierarchical features" class="compact-layers"><b>CLIP</b><i></i><i></i><i></i><i></i><i></i><b>DINO</b><i></i><i></i><i></i><i></i><i></i></div>
+</article>
+<article class="compact-method-card method-purple reveal">
+<div class="compact-method-copy"><small>Layer-wise expert aggregation</small><h3>Adaptively aggregate multi-level features</h3><p>LEA adaptively aggregates multi-level features.</p></div>
+<div aria-label="Layer-wise expert aggregation" class="compact-route"><span class="route-mini-bars"><i></i><i></i><i></i><i></i></span><em>Gate</em><strong>Shared expert</strong></div>
+</article>
+<article class="compact-method-card method-orange reveal">
+<div class="compact-method-copy"><small>Uncertainty-aware feature fusion</small><h3>Balance CLIP and DINO evidence</h3><p>UAF balances the two representations by feature uncertainty.</p></div>
+<div aria-label="Qualitative uncertainty-aware fusion" class="compact-fusion"><div><span>CLIP</span><i class="clip-bar"></i></div><div><span>DINO</span><i class="dino-bar"></i></div><b>UAF</b></div>
+</article>
+</div>
+<div class="container paper-figures paper-figures-single reveal"><article class="paper-figure-card"><div class="paper-figure-head"><div><span>Method figure</span><h3>UCF-Net</h3></div><button class="button button-secondary compact" data-caption="UCF-Net" data-lightbox="assets/img/vector/framework.svg" type="button">Expand</button></div><img alt="UCF-Net" loading="lazy" src="assets/img/vector/framework.svg"/></article></div>
+</section>
+<section class="section section-light" id="benchmark">
+<div class="container centered-heading reveal">
+<p class="kicker">Benchmark</p>
+<h2>A unified benchmark for evaluating generalization in deepfake detection</h2>
+<p>The unified benchmark and a separately constructed <span class="nowrap-phrase">cross-generator image evaluation set</span> support in-domain, cross-domain, and cross-generator evaluation.</p>
+</div>
+<div class="container paper-figures paper-figures-single benchmark-paper-figure reveal"><article class="paper-figure-card"><div class="paper-figure-head"><div><span>Benchmark figure</span><h3>Overview of the unified deepfake benchmark and the separately constructed cross-generator evaluation set</h3></div><button class="button button-secondary compact" data-caption="Overview of the unified deepfake benchmark and the separately constructed cross-generator evaluation set" data-lightbox="assets/img/vector/dataset-overview.svg" type="button">Expand</button></div><img alt="Overview of the unified deepfake benchmark and the separately constructed cross-generator evaluation set" loading="lazy" src="assets/img/vector/dataset-overview.svg"/></article></div>
+<div class="container benchmark-stats reveal">
+<article><strong>2,215,477</strong><span>Training</span></article>
+<article><strong>185,716</strong><span>Validation</span></article>
+<article><strong>1,393,675</strong><span>In-domain test</span></article>
+<article><strong>286,448</strong><span>Cross-domain test</span></article>
+</div>
+<div class="container benchmark-overview benchmark-overview-compact reveal">
+<div class="panel-copy">
+<span class="panel-number">4,081,316 images</span>
+<h3>A unified deepfake benchmark</h3>
+<p>The unified benchmark covers four forgery categories under binary real/fake supervision: face swapping (FS), face reenactment (FR), entire face synthesis (EFS), and face editing (FE).</p>
+<div aria-label="Deepfake manipulation families" class="taxonomy-grid taxonomy-cards">
+<figure class="taxonomy-card taxonomy-fs"><div class="taxonomy-thumb taxonomy-thumb-image"><img alt="Face swapping example cropped from Figure 3(a)" loading="lazy" src="assets/img/taxonomy/fs.png"/></div><figcaption><b>FS</b><span>Face Swapping</span></figcaption></figure>
+<figure class="taxonomy-card taxonomy-fr"><div class="taxonomy-thumb taxonomy-thumb-image"><img alt="Face reenactment example cropped from Figure 3(a)" loading="lazy" src="assets/img/taxonomy/fr.png"/></div><figcaption><b>FR</b><span>Face Reenactment</span></figcaption></figure>
+<figure class="taxonomy-card taxonomy-efs"><div class="taxonomy-thumb taxonomy-thumb-image"><img alt="Entire face synthesis example cropped from Figure 3(a)" loading="lazy" src="assets/img/taxonomy/efs.png"/></div><figcaption><b>EFS</b><span>Entire Face Synthesis</span></figcaption></figure>
+<figure class="taxonomy-card taxonomy-fe"><div class="taxonomy-thumb taxonomy-thumb-image"><img alt="Face editing example cropped from Figure 3(a)" loading="lazy" src="assets/img/taxonomy/fe.png"/></div><figcaption><b>FE</b><span>Face Editing</span></figcaption></figure>
+</div><p class="taxonomy-source-note">Representative examples of the four forgery categories in Figure 3(a).</p>
+</div>
+</div>
+<div class="container generator-section reveal">
+<div class="generator-heading">
+<div><span class="panel-number">8,807 RECENT GENERATOR FACES</span><h3>Eight recent image generators</h3></div>
+<p>A separate set for zero-shot transfer and few-shot adaptation.</p>
+</div>
+<div aria-label="Cross-generator image counts" class="generator-grid">
+<article><strong>1,859</strong><span>GPT-image2</span><img alt="GPT-image2 logo" class="generator-logo" src="assets/img/generator-logos/gpt-image2.png"/><i style="--height:100%"></i></article>
+<article><strong>1,254</strong><span>Banana2</span><img alt="Banana2 logo" class="generator-logo" src="assets/img/generator-logos/banana2.png"/><i style="--height:67.5%"></i></article>
+<article><strong>999</strong><span>seedream4.0</span><img alt="seedream4.0 logo" class="generator-logo" src="assets/img/generator-logos/seedream4.png"/><i style="--height:53.7%"></i></article>
+<article><strong>799</strong><span>FLUX.2-max</span><img alt="FLUX.2-max logo" class="generator-logo" src="assets/img/generator-logos/flux2-max.png"/><i style="--height:43%"></i></article>
+<article><strong>738</strong><span>Reve</span><img alt="Reve logo" class="generator-logo" src="assets/img/generator-logos/reve.png"/><i style="--height:39.7%"></i></article>
+<article><strong>959</strong><span>Grok-Imagine</span><img alt="Grok-Imagine logo" class="generator-logo" src="assets/img/generator-logos/grok-imagine.png"/><i style="--height:51.6%"></i></article>
+<article><strong>981</strong><span>Qwen-Max</span><img alt="Qwen-Max logo" class="generator-logo" src="assets/img/generator-logos/qwen-max.png"/><i style="--height:52.8%"></i></article>
+<article><strong>1,218</strong><span>Hunyuan-3.0</span><img alt="Hunyuan-3.0 logo" class="generator-logo" src="assets/img/generator-logos/hunyuan-3.png"/><i style="--height:65.5%"></i></article>
+</div>
+</div>
+<div class="container pipeline-card reveal">
+<div class="pipeline-copy">
+<p class="kicker">Dataset construction</p>
+<h3>From provenance-bearing records to audited face crops</h3>
+<ol>
+<li><b>Data acquisition</b><span>Verify provenance and remove duplicates.</span></li>
+<li><b>Face processing</b><span>Detect, align, crop, and re-detect faces.</span></li>
+<li><b>Human audit</b><span>Audit validity, occlusion, realism, and clarity.</span></li>
+</ol>
+<div class="pipeline-flow"><span>7,466 provenance records</span><i></i><span>7,295 verified sources</span><i></i><span>9,758 aligned face crops</span><i></i><span>8,807 retained crops</span></div>
+</div>
+<div class="pipeline-figure">
+<img alt="Cross-generator evaluation set construction pipeline" loading="lazy" src="assets/img/vector/aigc-pipeline.svg"/>
+<button data-caption="Cross-generator evaluation set construction pipeline" data-lightbox="assets/img/vector/aigc-pipeline.svg" type="button">Expand</button>
+</div>
+</div>
+</section>
+<section class="section section-tint results-section" id="results">
+<div class="container split-heading reveal">
+<div>
+<p class="kicker">Main results</p>
+<h2>Generalization beyond the training distribution</h2>
+</div>
+<p class="section-intro">UCF-Net is shown with a solid reference curve, while compared methods use dashed curves. Click a legend item to show or hide a method, and hover or focus any point to read its exact AUC.</p>
+</div>
+<div class="container result-shell reveal">
+<div aria-label="Result categories" class="result-tabs" role="tablist">
+<button aria-controls="result-panel-in-domain" aria-selected="false" class="result-tab" data-result="in-domain" id="result-tab-in-domain" role="tab">In-domain</button>
+<button aria-controls="result-panel-cross-domain" aria-selected="true" class="result-tab active" data-result="cross-domain" id="result-tab-cross-domain" role="tab">Cross-domain</button>
+<button aria-controls="result-panel-cross-generator" aria-selected="false" class="result-tab" data-result="cross-generator" id="result-tab-cross-generator" role="tab">Cross-generator</button>
+</div>
+<div aria-labelledby="result-tab-in-domain" class="result-panel" data-result-panel="in-domain" id="result-panel-in-domain" role="tabpanel" tabindex="0">
+<div class="result-summary">
+<span class="score-label">Best in-domain mean AUC</span>
+<strong>95.33</strong>
+<p>Best mean AUC across six in-domain datasets.</p>
+</div>
+<div class="chart-card">
+<div class="chart-heading"><div><span>Dataset profile</span><h3>In-domain mAUC</h3></div><p class="chart-instruction">Click a legend item to show or hide a method; hover or focus a point for exact AUC.</p></div>
+<div class="chart-legend" data-legend="in-domain"></div>
+<div aria-label="In-domain AUC radar chart" class="radar-chart" id="radar-in-domain"></div><p class="chart-scale-note">Scale: 0–100 AUC (%)</p>
+</div>
+<div class="ranking-card">
+<div class="ranking-heading"><span>Mean AUC</span><h3>Method ranking</h3></div>
+<div class="ranking-list" id="ranking-in-domain"></div>
+</div>
+</div>
+<div aria-labelledby="result-tab-cross-domain" class="result-panel active" data-result-panel="cross-domain" id="result-panel-cross-domain" role="tabpanel" tabindex="0">
+<div class="result-summary accent-summary">
+<span class="score-label">Best cross-domain mean AUC</span>
+<strong>92.15</strong>
+<div class="gain-pill">+2.95 over DFF-Adapter</div>
+<p>Best mean AUC across held-out datasets and DF40 forgery categories.</p>
+</div>
+<div class="chart-card">
+<div class="chart-heading">
+<div><span>Held-out datasets &amp; DF40 categories</span><h3>Cross-domain AUC</h3></div>
+<p class="chart-instruction">Select a method in the legend to show or hide it. Focus a point for its exact AUC.</p>
+</div>
+<div class="chart-legend" data-legend="cross-domain"></div>
+<div aria-label="Cross-domain AUC radar chart" class="radar-chart" id="radar-cross-domain"></div><p class="chart-scale-note">Scale: 0–100 AUC (%)</p>
+</div>
+<div class="ranking-card">
+<div class="ranking-heading"><span>Mean AUC</span><h3>Method ranking</h3></div>
+<div class="ranking-list" id="ranking-cross-domain"></div>
+</div>
+</div>
+<div aria-labelledby="result-tab-cross-generator" class="result-panel generator-result" data-result-panel="cross-generator" id="result-panel-cross-generator" role="tabpanel" tabindex="0">
+<div class="result-summary">
+<span class="score-label">Few-shot adaptation</span>
+<strong>91.36</strong>
+<div class="gain-pill">5-shot AUC</div>
+<p>5 fake + 5 real images per generator; evaluation uses the remaining generated images and 8,807 real images sampled in a dataset-balanced way from the original test split.</p>
+</div>
+<div class="chart-card wide-chart">
+<div class="chart-heading"><div><span>Adaptation scale</span><h3>Cross-generator AUC</h3></div><div class="chart-legend" data-legend="cross-generator"></div><p class="chart-instruction">Click a legend item to show or hide a method; hover or focus a point for exact AUC.</p></div>
+<div aria-label="Cross-generator few-shot AUC line chart" class="line-chart" id="line-cross-generator"></div><p class="chart-scale-note">Scale: 0–100 AUC (%)</p>
+</div>
+<div class="shot-cards">
+<article><span>0-shot</span><strong>40.90</strong><small>UCF-Net</small></article>
+<article><span>5-shot</span><strong>91.36</strong><small>Highest among evaluated methods</small></article>
+<article><span>50-shot</span><strong>98.24</strong><small>Highest among evaluated methods</small></article>
+<article><span>100-shot</span><strong>98.81</strong><small>Highest among evaluated methods</small></article>
+</div>
+</div>
+</div>
+<div class="container table-toggle-wrap reveal">
+<button aria-expanded="false" class="text-button" data-table-toggle="" type="button"><span class="table-toggle-label">View exact result tables</span><svg aria-hidden="true" class="table-toggle-icon" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></button>
+<div class="exact-tables" hidden="">
+<div class="table-scroll">
+<table>
+<caption>In-domain detection performance (AUC)</caption>
+<thead><tr><th>Method</th><th>CDF</th><th>DFFD</th><th>DFDCP</th><th>FF++</th><th>DF40</th><th>MFFI</th><th>mAUC</th></tr></thead>
+<tbody>
+<tr><td>Xception</td><td>99.26</td><td>98.48</td><td>90.93</td><td>76.03</td><td>83.89</td><td>78.94</td><td>87.92</td></tr>
+<tr><td>RECCE</td><td>99.38</td><td>99.69</td><td>89.04</td><td>78.70</td><td>88.60</td><td>75.29</td><td>88.45</td></tr>
+<tr><td>SPSL</td><td>98.97</td><td>98.87</td><td>93.49</td><td>82.32</td><td>81.92</td><td>81.43</td><td>89.50</td></tr>
+<tr><td>CLIP</td><td>94.83</td><td>99.39</td><td>86.78</td><td>74.61</td><td>87.45</td><td>82.60</td><td>87.61</td></tr>
+<tr><td>Effort</td><td>99.52</td><td>99.95</td><td>96.51</td><td>85.14</td><td>92.56</td><td>85.60</td><td>93.21</td></tr>
+<tr><td>DINOv2</td><td>80.28</td><td>98.11</td><td>83.50</td><td>66.08</td><td>83.75</td><td>71.39</td><td>80.52</td></tr>
+<tr><td>DFF-Adapter</td><td>99.85</td><td>99.96</td><td>97.31</td><td>92.10</td><td>91.60</td><td>88.31</td><td>94.86</td></tr>
+<tr class="ours"><td>UCF-Net</td><td>99.74</td><td>99.99</td><td>97.88</td><td>90.55</td><td>92.90</td><td>90.92</td><td>95.33</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-scroll">
+<table>
+<caption>Cross-domain detection performance (AUC)</caption>
+<thead><tr><th>Method</th><th>UADFV</th><th>DFF</th><th>DFDC</th><th>DF40-FS</th><th>DF40-FR</th><th>DF40-EFS</th><th>DF40-FE</th><th>mAUC</th></tr></thead>
+<tbody>
+<tr><td>Xception</td><td>91.37</td><td>53.14</td><td>75.16</td><td>66.00</td><td>89.90</td><td>45.96</td><td>46.91</td><td>66.92</td></tr>
+<tr><td>RECCE</td><td>85.59</td><td>72.62</td><td>73.37</td><td>76.27</td><td>64.50</td><td>42.89</td><td>48.04</td><td>66.18</td></tr>
+<tr><td>SPSL</td><td>94.29</td><td>56.72</td><td>73.02</td><td>60.65</td><td>74.26</td><td>61.89</td><td>49.72</td><td>67.22</td></tr>
+<tr><td>CLIP</td><td>95.46</td><td>85.52</td><td>77.06</td><td>95.21</td><td>89.04</td><td>74.65</td><td>93.62</td><td>87.22</td></tr>
+<tr><td>Effort</td><td>98.24</td><td>88.91</td><td>88.61</td><td>95.51</td><td>88.39</td><td>69.04</td><td>93.67</td><td>88.91</td></tr>
+<tr><td>DINOv2</td><td>85.67</td><td>58.12</td><td>72.71</td><td>94.35</td><td>74.62</td><td>61.51</td><td>95.04</td><td>77.43</td></tr>
+<tr><td>DFF-Adapter</td><td>99.08</td><td>81.97</td><td>87.63</td><td>92.45</td><td>90.11</td><td>77.78</td><td>95.37</td><td>89.20</td></tr>
+<tr class="ours"><td>UCF-Net</td><td>97.49</td><td>89.72</td><td>90.01</td><td>97.85</td><td>93.38</td><td>78.10</td><td>98.52</td><td>92.15</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-scroll">
+<table>
+<caption>Cross-generator few-shot detection performance (AUC)</caption>
+<thead><tr><th>Method</th><th>0-shot</th><th>5-shot</th><th>50-shot</th><th>100-shot</th></tr></thead>
+<tbody>
+<tr><td>Xception</td><td>46.72</td><td>77.41</td><td>91.85</td><td>95.66</td></tr>
+<tr><td>RECCE</td><td>32.80</td><td>77.06</td><td>94.08</td><td>91.45</td></tr>
+<tr><td>SPSL</td><td>60.02</td><td>82.72</td><td>90.96</td><td>96.11</td></tr>
+<tr><td>Effort</td><td>37.23</td><td>83.03</td><td>97.10</td><td>98.49</td></tr>
+<tr><td>DFF-Adapter</td><td>43.21</td><td>89.23</td><td>97.07</td><td>97.27</td></tr>
+<tr class="ours"><td>UCF-Net</td><td>40.90</td><td>91.36</td><td>98.24</td><td>98.81</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-light" id="ablation">
+<div class="container centered-heading ablation-heading reveal">
+<p class="kicker">Ablation study</p>
+<h2>What contributes to the gain?</h2>
+<p>Each card changes one design choice while the remaining training setup stays fixed. The bars report cross-domain mAUC.</p>
+</div>
+<div class="container ablation-grid refined-ablation-grid">
+<article class="ablation-card ablation-encoders reveal">
+<div class="ablation-head"><div><h3>CLIP–DINO encoder pair</h3><p>The heterogeneous CLIP–DINO pair performs best.</p></div></div>
+<div class="mini-bars" data-mini-chart="encoders"></div>
+<div class="ablation-finding"><span>Best configuration</span><strong>CLIP + DINO · 92.15</strong></div>
+</article>
+<article class="ablation-card ablation-lea reveal">
+<div class="ablation-head"><div><h3>Layer-wise aggregation</h3><p>LEA adaptively aggregates multi-level features across Transformer depths.</p></div></div>
+<div class="mini-bars" data-mini-chart="lea"></div>
+<div class="ablation-finding"><span>Cross-domain gain</span><strong>+0.30 mAUC</strong></div>
+</article>
+<article class="ablation-card ablation-uaf reveal">
+<div class="ablation-head"><div><h3>Fusion strategy</h3><p>UAF outperforms fixed and parameter-heavy alternatives.</p></div></div>
+<div class="mini-bars" data-mini-chart="fusion"></div>
+<div class="ablation-finding"><span>Gain over sum (average)</span><strong>+2.03 mAUC</strong></div>
+</article>
+<article class="ablation-card ablation-lora reveal">
+<div class="ablation-head"><div><h3>LoRA rank</h3><p>Increasing adaptation capacity does not always improve transfer.</p></div></div>
+<div class="mini-bars" data-mini-chart="lora"></div>
+<div class="ablation-finding"><span>Best evaluated rank</span><strong>r = 4 · 92.15</strong></div>
+</article>
+</div>
+<div class="container training-scale-card reveal">
+<div class="training-scale-heading">
+<div><p class="kicker">Training data scale</p><h3>Scale of Training Data</h3></div>
+<p>Cross-domain mAUC under 10K, 1M, and 2M training settings. The 10K and 1M sets are proportional samples from the full training split; 1M is half of the full split, while 2M denotes the complete approximately 2.2M-image training split.</p>
+</div>
+<div class="chart-legend" data-legend="training-scale"></div>
+<div aria-label="Cross-domain mean AUC by training data scale" class="line-chart" id="line-training-scale"></div>
+<p class="chart-scale-note">Cross-domain mAUC (%). Click a legend item to show or hide a method; hover or focus a point for the exact value.</p>
+<details class="scale-data-table">
+<summary>View exact training-scale values</summary>
+<div class="table-scroll">
+<table>
+<caption>Impact of training data scale on cross-domain mean AUC</caption>
+<thead><tr><th>Method</th><th>10K</th><th>1M</th><th>2M</th></tr></thead>
+<tbody>
+<tr><td>Xception</td><td>69.81</td><td>68.14</td><td>66.92</td></tr>
+<tr><td>RECCE</td><td>63.18</td><td>63.01</td><td>66.18</td></tr>
+<tr><td>SPSL</td><td>65.88</td><td>70.34</td><td>67.22</td></tr>
+<tr><td>Effort</td><td>83.37</td><td>88.79</td><td>88.91</td></tr>
+<tr><td>DFF-Adapter</td><td>85.12</td><td>89.70</td><td>89.20</td></tr>
+<tr class="ours"><td>UCF-Net</td><td>85.58</td><td>91.46</td><td>92.15</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+</section>
+<section class="section visualizations-section" id="visualizations">
+<div class="container split-heading reveal">
+<div>
+<p class="kicker">Qualitative evidence</p>
+<h2>Seeing what the model sees</h2>
+</div>
+<p class="section-intro">Grad-CAM and feature-space visualizations provide qualitative evidence for how CLIP and DINO representations are fused.</p>
+</div>
+<div class="container visual-shell reveal">
+<div aria-label="Qualitative visualizations" class="visual-tabs" role="tablist">
+<button aria-controls="visual-panel-fusion-gradcam" aria-selected="true" class="visual-tab active" data-visual="fusion-gradcam" id="visual-tab-fusion-gradcam" role="tab">Fusion strategies</button>
+<button aria-controls="visual-panel-branch-tsne" aria-selected="false" class="visual-tab" data-visual="branch-tsne" id="visual-tab-branch-tsne" role="tab">CLIP · DINO · Fused</button>
+<button aria-controls="visual-panel-full-tsne" aria-selected="false" class="visual-tab" data-visual="full-tsne" id="visual-tab-full-tsne" role="tab">Full detector comparison</button>
+<button aria-controls="visual-panel-more-gradcam" aria-selected="false" class="visual-tab" data-visual="more-gradcam" id="visual-tab-more-gradcam" role="tab">More Grad-CAM</button>
+</div>
+<div aria-labelledby="visual-tab-fusion-gradcam" class="visual-panel active" data-visual-panel="fusion-gradcam" id="visual-panel-fusion-gradcam" role="tabpanel" tabindex="0">
+<div class="visual-copy"><span>Feature fusion</span><h3>More concentrated facial responses in the shown examples</h3><p>On the shown examples, UAF produces more concentrated facial responses than the compared fusion strategies.</p></div>
+<button class="visual-image" data-caption="Grad-CAM comparison among feature fusion strategies" data-lightbox="assets/img/vector/gradcam.svg" type="button"><img alt="Grad-CAM comparison among fusion strategies" loading="lazy" src="assets/img/vector/gradcam.svg"/></button>
+</div>
+<div aria-labelledby="visual-tab-branch-tsne" class="visual-panel" data-visual-panel="branch-tsne" id="visual-panel-branch-tsne" role="tabpanel" tabindex="0">
+<div class="visual-copy"><span>Feature space</span><h3>More separated clusters in the plotted representations</h3><p>The 2-D t-SNE view shows more separated real/fake clusters in the plotted representations; this is not detection AUC.</p></div>
+<button class="visual-image" data-caption="t-SNE of CLIP, DINO, and fused representations" data-lightbox="assets/img/vector/tsne-clip-dino.svg" type="button"><img alt="t-SNE of CLIP, DINO, and fused representations" loading="lazy" src="assets/img/vector/tsne-clip-dino.svg"/></button>
+</div>
+<div aria-labelledby="visual-tab-full-tsne" class="visual-panel" data-visual-panel="full-tsne" id="visual-panel-full-tsne" role="tabpanel" tabindex="0">
+<div class="visual-copy"><span>Detector comparison</span><h3>Linear separability in the plotted 2-D embeddings</h3><p>UCF-Net reaches 87.0% joint-view and 92.5% DF40-Test 2-D t-SNE linear separability; these values are not detection AUC.</p></div>
+<button class="visual-image square" data-caption="Full t-SNE comparison across detectors" data-lightbox="assets/img/vector/tsne.svg" type="button"><img alt="Full t-SNE comparison across detectors" loading="lazy" src="assets/img/vector/tsne.svg"/></button>
+</div>
+<div aria-labelledby="visual-tab-more-gradcam" class="visual-panel" data-visual-panel="more-gradcam" id="visual-panel-more-gradcam" role="tabpanel" tabindex="0">
+<div class="visual-copy"><span>Extended evidence</span><h3>CLIP and DINO attention in additional examples</h3><p>Across the shown samples, CLIP and DINO exhibit different attention patterns.</p></div>
+<button class="visual-image square" data-caption="Extended Grad-CAM comparison" data-lightbox="assets/img/vector/appendix-gradcam.svg" type="button"><img alt="Extended Grad-CAM comparison" loading="lazy" src="assets/img/vector/appendix-gradcam.svg"/></button>
+</div>
+</div>
+</section>
+<section class="section resources-section" id="resources">
+<div class="container resource-section-heading reveal">
+<p class="kicker">Release materials</p>
+<h2>Resources &amp; Citation</h2>
+<p>Paper, source code, pretrained models, datasets, and the project citation entry.</p>
+</div>
+<div class="container resource-grid resource-grid-final">
+<div class="resource-copy reveal">
+<h3>Project resources</h3>
+<div class="resource-actions resource-actions-final">
+<a aria-label="Open the UCF-Net paper on arXiv" href="https://arxiv.org/abs/2609.07670" rel="noopener" target="_blank"><span>arXiv</span><b>Open paper ↗</b></a>
+<a aria-label="Open the UCF-Net GitHub repository" href="https://github.com/XavierJiezou/UCF-Net" rel="noopener" target="_blank"><span>GitHub</span><b>Explore code ↗</b></a>
+<a aria-label="Open UCF-Net pretrained models on Hugging Face" href="https://huggingface.co/XavierJiezou/ucfnet-models" rel="noopener" target="_blank"><span>Hugging Face</span><b>Download models ↗</b></a>
+<a aria-label="Open UCF-Net datasets on Hugging Face" href="https://huggingface.co/datasets/XavierJiezou/ucfnet-datasets" rel="noopener" target="_blank"><span>Hugging Face</span><b>Access datasets ↗</b></a>
+</div>
+</div>
+<aside aria-labelledby="citation-title" class="citation-card reveal">
+<div class="citation-card-head">
+<div><span class="citation-eyebrow">BibTeX</span><h3 id="citation-title">Cite UCF-Net</h3></div>
+<button class="copy-bibtex-button" data-copy-bibtex="" type="button">Copy BibTeX</button>
+</div>
+<pre id="bibtex"><code>@misc{ucf-net,
+      title={Harnessing CLIP and DINO: An Uncertainty-Aware Cascaded Fusion Network for Generalizable Deepfake Image Detection}, 
+      author={Xuechao Zou and Yi Zhou and Kai Li and Shun Zhang and Yuhui Chen and Congyan Lang and Junliang Xing},
+      year={2026},
+      eprint={2609.07670},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2609.07670}, 
+}</code></pre>
+<p class="citation-note">Use this arXiv entry to cite UCF-Net.</p>
+<p aria-live="polite" class="copy-status"></p>
+</aside>
+</div>
+</section>
+</main>
+<footer class="site-footer"><div class="container academic-footer-row"><p>UCF-Net · Generalizable Deepfake Image Detection</p></div></footer>
+<dialog aria-label="Expanded figure" class="lightbox">
+<button aria-label="Close figure" class="lightbox-close" type="button">×</button>
+<figure><img alt=""/><figcaption></figcaption></figure>
+</dialog>
+<script src="assets/js/main.js?v=20260807-senior-final"></script>
+</body>
+</html>

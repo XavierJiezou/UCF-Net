@@ -1,0 +1,117 @@
+/* Final document-aligned polish. Desktop-first, no content changes. */
+
+/* Keep the exact reviewer-requested phrase visually intact on desktop. */
+.nowrap-phrase { white-space: nowrap; }
+
+/* Results radar cards: clearer hierarchy and better use of the middle column. */
+@media (min-width: 1180px) {
+  #result-panel-in-domain,
+  #result-panel-cross-domain {
+    grid-template-columns: minmax(230px, .53fr) minmax(650px, 1.55fr) minmax(230px, .55fr) !important;
+    gap: 16px !important;
+  }
+
+  #result-panel-in-domain .chart-card,
+  #result-panel-cross-domain .chart-card {
+    padding: 22px 24px 14px !important;
+  }
+
+  #result-panel-in-domain .chart-heading,
+  #result-panel-cross-domain .chart-heading {
+    display: grid !important;
+    grid-template-columns: minmax(220px, 1fr) minmax(250px, .88fr) !important;
+    align-items: start !important;
+    gap: 24px !important;
+  }
+
+  #result-panel-in-domain .chart-heading h3,
+  #result-panel-cross-domain .chart-heading h3 {
+    margin-top: 4px !important;
+    font-size: 1.12rem !important;
+  }
+
+  #result-panel-in-domain .chart-instruction,
+  #result-panel-cross-domain .chart-instruction {
+    margin: 0 !important;
+    max-width: 285px !important;
+    justify-self: end !important;
+    text-align: right !important;
+    line-height: 1.48 !important;
+  }
+
+  #result-panel-in-domain .chart-legend,
+  #result-panel-cross-domain .chart-legend {
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin: 13px auto 0 !important;
+    max-width: 610px !important;
+  }
+
+  #result-panel-in-domain .radar-chart,
+  #result-panel-cross-domain .radar-chart {
+    min-height: 405px !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+  }
+
+  #result-panel-in-domain .radar-chart svg,
+  #result-panel-cross-domain .radar-chart svg {
+    width: min(100%, 520px) !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+  }
+
+  #result-panel-in-domain .chart-scale-note,
+  #result-panel-cross-domain .chart-scale-note {
+    margin-top: -6px !important;
+    padding-right: 4px !important;
+  }
+}
+
+/* Slightly tighten the benchmark heading without changing its content. */
+@media (min-width: 1180px) {
+  #benchmark > .centered-heading {
+    max-width: 1160px !important;
+  }
+  #benchmark > .centered-heading h2 {
+    max-width: 1060px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  #benchmark > .centered-heading > p:last-child {
+    max-width: 1080px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+}
+
+
+/* Senior-review feedback fixes: 2026-08-07
+   Scope intentionally limited to the items explicitly marked in 网站修改意见.docx. */
+
+/* Abstract: match the requested manuscript-style justified alignment. */
+.abstract-section .abstract-copy p {
+  text-align: justify !important;
+  text-justify: inter-word;
+}
+
+/* Resources: make the two primary cards share the same top/bottom alignment. */
+.resource-grid-final {
+  align-items: stretch !important;
+}
+.resource-grid-final > .resource-copy,
+.resource-grid-final > .citation-card {
+  height: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Footer: center the single project line horizontally. */
+.academic-footer-row {
+  justify-content: center !important;
+  text-align: center !important;
+}
+.academic-footer-row p {
+  width: 100%;
+  text-align: center !important;
+}

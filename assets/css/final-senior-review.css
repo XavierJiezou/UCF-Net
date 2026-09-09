@@ -1,0 +1,264 @@
+/* Final senior-review refinements — desktop-first academic layout. */
+
+/* Resource icons */
+.hero-actions .hf-icon {
+  width: 18px !important;
+  height: 18px !important;
+  object-fit: contain;
+  flex: 0 0 18px;
+}
+
+/* Motivation: present the complete paper figure at a readable, restrained scale. */
+#motivation .motivation-paper-figure {
+  width: min(100% - 48px, 920px) !important;
+  margin: 24px auto 0 !important;
+}
+#motivation .motivation-full-figure {
+  margin: 0 !important;
+  padding: 16px 18px 13px !important;
+  border: 1px solid #dfe5ef !important;
+  border-radius: 16px !important;
+  background: #fff !important;
+  box-shadow: 0 12px 34px rgba(30, 45, 72, .055) !important;
+}
+#motivation .motivation-full-button {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  cursor: zoom-in;
+}
+#motivation .motivation-full-figure img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 610px;
+  margin: 0 auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #fff;
+  object-fit: contain !important;
+}
+#motivation .motivation-full-figure figcaption {
+  max-width: 760px;
+  margin: 10px auto 0 !important;
+  color: #6f7f96 !important;
+  font-size: .76rem !important;
+  line-height: 1.5 !important;
+  text-align: center;
+}
+
+/* Benchmark taxonomy: real Figure 3(a) crops, clean and consistent. */
+#benchmark .benchmark-overview-compact {
+  padding-bottom: 4px;
+}
+#benchmark .taxonomy-cards {
+  gap: 16px !important;
+  margin-top: 20px !important;
+}
+#benchmark .taxonomy-card {
+  display: grid !important;
+  grid-template-rows: 158px auto;
+  overflow: hidden !important;
+  border: 1px solid #dfe5ef !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  box-shadow: 0 8px 22px rgba(31, 44, 72, .045) !important;
+}
+#benchmark .taxonomy-thumb.taxonomy-thumb-image {
+  display: grid !important;
+  width: 100% !important;
+  height: 158px !important;
+  min-height: 0 !important;
+  padding: 10px 12px !important;
+  place-items: center;
+  overflow: hidden;
+  border: 0 !important;
+  border-bottom: 1px solid #e2e7ef !important;
+  background: #fff !important;
+  background-image: none !important;
+  aspect-ratio: auto !important;
+}
+#benchmark .taxonomy-thumb-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+#benchmark .taxonomy-card figcaption {
+  display: flex !important;
+  min-height: 62px !important;
+  padding: 11px 12px !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: #253852 !important;
+  background: #f8f8fc !important;
+}
+#benchmark .taxonomy-cards .taxonomy-card figcaption b {
+  min-width: 42px !important;
+  height: 30px !important;
+  color: #fff !important;
+  background: #6558c6 !important;
+  font-size: .72rem !important;
+  font-weight: 800 !important;
+}
+#benchmark .taxonomy-card figcaption span {
+  color: #2f425e !important;
+  font-size: .82rem !important;
+  font-weight: 650 !important;
+  line-height: 1.25 !important;
+}
+#benchmark .taxonomy-source-note {
+  margin: 10px 0 0 !important;
+  color: #7b899c !important;
+  font-size: .72rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Results: keep the reference page's interactive comparison logic but improve hierarchy. */
+.results-section .section-intro {
+  max-width: 520px !important;
+}
+.result-shell {
+  box-shadow: 0 12px 34px rgba(30, 45, 72, .055) !important;
+}
+.result-panel {
+  grid-template-columns: minmax(225px, .58fr) minmax(520px, 1.32fr) minmax(235px, .62fr) !important;
+  gap: 14px !important;
+}
+.result-summary,
+.chart-card,
+.ranking-card {
+  border-radius: 14px !important;
+}
+.chart-card {
+  padding: 22px 22px 16px !important;
+}
+.chart-heading {
+  gap: 14px !important;
+}
+.chart-heading h3 {
+  white-space: nowrap;
+}
+.chart-instruction {
+  max-width: 310px !important;
+  color: #75849a !important;
+  font-size: .71rem !important;
+}
+.chart-legend {
+  gap: 6px !important;
+}
+.chart-legend button,
+.chart-legend .legend-toggle {
+  min-height: 30px !important;
+  padding: 5px 8px !important;
+  border-color: #dbe2ec !important;
+  background: #fff !important;
+  font-size: .67rem !important;
+}
+.chart-legend button > i {
+  width: 20px !important;
+  border-top-width: 2px !important;
+}
+.radar-chart {
+  min-height: 350px !important;
+}
+.radar-chart svg {
+  width: min(100%, 450px) !important;
+}
+.line-chart {
+  min-height: 300px !important;
+}
+.radar-shape,
+.line-path {
+  transition: opacity .16s ease, stroke-width .16s ease, filter .16s ease;
+}
+.radar-grid,
+.radar-axis,
+.line-grid {
+  stroke: #dfe6ef !important;
+}
+.radar-label,
+.line-axis-label,
+.line-axis-title {
+  fill: #586b84 !important;
+}
+
+/* Training-scale plot: large enough to read, but not a full-width dashboard. */
+.training-scale-card {
+  width: min(calc(100% - 48px), 1160px) !important;
+  margin: 28px auto 0 !important;
+  padding: 25px 28px 22px !important;
+}
+.training-scale-heading {
+  grid-template-columns: minmax(300px, .72fr) minmax(360px, 1fr) !important;
+  gap: 34px !important;
+  padding-bottom: 14px !important;
+  align-items: end !important;
+}
+.training-scale-heading > p {
+  font-size: .82rem !important;
+  line-height: 1.55 !important;
+}
+.training-scale-card .chart-legend {
+  justify-content: center;
+  margin: 14px auto 4px !important;
+}
+#line-training-scale {
+  min-height: 320px !important;
+  margin-top: 2px !important;
+  padding: 0 !important;
+}
+#line-training-scale svg {
+  width: min(100%, 1040px) !important;
+  max-width: 1040px !important;
+  min-height: 310px !important;
+  margin: 0 auto !important;
+}
+.training-scale-card .chart-scale-note {
+  max-width: 1000px;
+  margin: 2px auto 0 !important;
+  text-align: right;
+}
+.scale-data-table {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Exact-result toggle: simple centered plus/minus in a circle. */
+.table-toggle-wrap .text-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+.table-toggle-icon {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  border: 1px solid currentColor !important;
+  border-radius: 50% !important;
+  background: none !important;
+}
+.table-toggle-icon path {
+  display: block !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+}
+.table-toggle-icon::before,
+.table-toggle-icon::after {
+  display: none !important;
+}
+
+/* Desktop-only polish requested for this project. */
+@media (min-width: 1200px) {
+  .container { max-width: 1420px; }
+  #benchmark .benchmark-overview-compact { max-width: 1400px; }
+  .result-shell { max-width: 1440px; }
+}

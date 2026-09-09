@@ -1,0 +1,29 @@
+
+/* Final corrections: preserve approved content and use only source-grounded logos. */
+.teaser-paper { padding-top: 12px !important; }
+.paper-teaser-figure { margin-top: 0 !important; }
+.generator-grid article {
+  justify-content: flex-end !important;
+}
+.generator-grid article > strong {
+  margin-top: 11px !important;
+}
+.generator-grid article > span {
+  margin-top: 3px !important;
+}
+.generator-grid .generator-logo {
+  grid-row: 4 !important;
+  width: 34px !important;
+  height: 34px !important;
+  margin: 5px auto 0 !important;
+  padding: 3px !important;
+  object-fit: contain !important;
+  border: 1px solid rgba(99, 113, 138, .14) !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,.9) !important;
+  box-shadow: none !important;
+}
+.generator-grid { min-height: 330px !important; }
+@media (min-width: 1100px) {
+  .abstract-heading h2 { max-width: 620px !important; }
+}

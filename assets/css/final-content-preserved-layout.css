@@ -1,0 +1,112 @@
+/* Final content-preserved desktop polish. Only restores omitted content and fixes layout. */
+
+/* Cross-generator: match the approved two-column composition — summary left, chart fills the rest. */
+.result-panel.generator-result {
+  grid-template-columns: 300px minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+.generator-result .result-summary {
+  grid-column: 1 !important;
+  min-width: 0 !important;
+  padding: 26px 28px !important;
+}
+.generator-result .wide-chart {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 485px !important;
+  padding: 24px 26px 18px !important;
+}
+.generator-result .chart-heading {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: start !important;
+  column-gap: 20px !important;
+  row-gap: 8px !important;
+}
+.generator-result .chart-heading > div:first-child {
+  min-width: 175px !important;
+}
+.generator-result .chart-legend {
+  align-self: start !important;
+  justify-self: start !important;
+  margin-top: 0 !important;
+}
+.generator-result .chart-instruction {
+  grid-column: 1 / -1 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+  font-size: .7rem !important;
+}
+.generator-result #line-cross-generator {
+  width: 100% !important;
+  min-height: 360px !important;
+  margin-top: 4px !important;
+}
+.generator-result #line-cross-generator svg {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 350px !important;
+  margin: 0 auto !important;
+}
+.generator-result .chart-scale-note {
+  margin-top: 0 !important;
+  text-align: right !important;
+}
+.generator-result .shot-cards {
+  grid-column: 1 / -1 !important;
+  margin-top: 0 !important;
+}
+
+/* Keep metric headings on one line on desktop. */
+.result-summary .score-label,
+.chart-heading h3,
+.ranking-heading h3 {
+  white-space: nowrap !important;
+}
+
+/* Motivation: let the paper figure occupy the card instead of floating in a large white field. */
+#motivation .motivation-paper-figure {
+  width: min(calc(100% - 56px), 1080px) !important;
+  margin-top: 20px !important;
+}
+#motivation .motivation-full-figure {
+  padding: 12px 14px 12px !important;
+}
+#motivation .motivation-full-button {
+  width: 100% !important;
+  max-width: 1000px !important;
+}
+#motivation .motivation-full-figure img {
+  width: 100% !important;
+  max-width: 1000px !important;
+  max-height: 690px !important;
+  object-fit: contain !important;
+}
+#motivation .motivation-full-figure figcaption {
+  max-width: 930px !important;
+  margin-top: 8px !important;
+}
+
+/* More Grad-CAM is a restored original visualization tab; keep its large paper figure readable. */
+#visual-panel-more-gradcam .visual-image.square img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+}
+
+/* Desktop-only project: retain a stable composition through common laptop widths. */
+@media (min-width: 1100px) and (max-width: 1320px) {
+  .result-panel.generator-result {
+    grid-template-columns: 270px minmax(0, 1fr) !important;
+  }
+  .generator-result .wide-chart {
+    min-height: 450px !important;
+  }
+  #motivation .motivation-paper-figure {
+    width: min(calc(100% - 42px), 1000px) !important;
+  }
+}

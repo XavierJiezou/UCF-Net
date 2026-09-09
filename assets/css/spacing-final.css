@@ -1,0 +1,97 @@
+/* Final desktop spacing pass.
+   Content, data, images, wording, order, and interactions are unchanged. */
+
+/* Reduce the oversized vertical rhythm across the academic page. */
+.section {
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
+}
+
+.centered-heading,
+.split-heading,
+.resource-section-heading,
+.ablation-heading {
+  margin-bottom: 28px !important;
+}
+
+/* Motivation had the most visible excess whitespace. */
+#motivation.section {
+  padding-top: 34px !important;
+  padding-bottom: 34px !important;
+}
+
+#motivation .centered-heading {
+  margin-bottom: 20px !important;
+}
+
+#motivation .centered-heading h2::after {
+  margin-top: 10px !important;
+}
+
+#motivation .centered-heading > p:last-child {
+  margin-top: 9px !important;
+  line-height: 1.5 !important;
+}
+
+#motivation .motivation-layout {
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+#motivation .motivation-copy {
+  padding: 13px !important;
+}
+
+#motivation .motivation-tabs {
+  gap: 5px !important;
+}
+
+#motivation .tab-button {
+  padding: 7px 10px !important;
+  min-height: 36px !important;
+}
+
+#motivation .case-text {
+  padding: 12px 1px 2px !important;
+}
+
+#motivation .case-text h3 {
+  margin-top: 7px !important;
+  font-size: 1.08rem !important;
+  line-height: 1.32 !important;
+}
+
+#motivation .legend-inline {
+  margin-top: 10px !important;
+  gap: 9px 14px !important;
+}
+
+#motivation .case-figure {
+  padding: 11px !important;
+}
+
+#motivation .case-columns {
+  margin-bottom: 7px !important;
+}
+
+#motivation .insight-banner {
+  margin-top: 13px !important;
+  padding: 13px 18px !important;
+  min-height: 0 !important;
+}
+
+/* Keep the manuscript-style abstract and other major sections compact too. */
+#abstract.section {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+
+#method.section,
+#benchmark.section,
+#results.section,
+#ablation.section,
+#visualizations.section,
+#resources.section {
+  padding-top: 54px !important;
+  padding-bottom: 54px !important;
+}

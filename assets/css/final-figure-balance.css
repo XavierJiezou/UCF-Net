@@ -1,0 +1,113 @@
+/* Final desktop figure balance: preserve content, tighten only the two reviewed figure blocks. */
+
+/* Motivation: the card follows the real paper figure instead of spanning a wide empty field. */
+#motivation .motivation-paper-figure {
+  width: min(calc(100% - 56px), 950px) !important;
+  margin: 18px auto 0 !important;
+}
+#motivation .motivation-full-figure {
+  margin: 0 !important;
+  padding: 14px 16px 12px !important;
+  overflow: hidden !important;
+  border-radius: 15px !important;
+}
+#motivation .motivation-full-button {
+  display: block !important;
+  width: 100% !important;
+  max-width: 890px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+#motivation .motivation-full-figure img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 890px !important;
+  max-height: none !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+}
+#motivation .motivation-full-figure figcaption {
+  max-width: 860px !important;
+  margin: 10px auto 0 !important;
+  font-size: .76rem !important;
+  line-height: 1.48 !important;
+  text-align: center !important;
+}
+#motivation .centered-heading {
+  margin-bottom: 0 !important;
+}
+
+/* Benchmark taxonomy: complete real Figure 3(a) crops with a restrained, uniform academic layout. */
+#benchmark .benchmark-overview-compact {
+  max-width: 1320px !important;
+  padding: 22px 24px 20px !important;
+}
+#benchmark .benchmark-overview-compact .panel-copy > p:not(.taxonomy-source-note) {
+  max-width: 1120px !important;
+  margin-bottom: 0 !important;
+}
+#benchmark .taxonomy-cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: 18px !important;
+}
+#benchmark .taxonomy-card {
+  grid-template-rows: 168px 58px !important;
+  min-height: 226px !important;
+  overflow: hidden !important;
+  border-radius: 13px !important;
+}
+#benchmark .taxonomy-thumb.taxonomy-thumb-image {
+  display: grid !important;
+  width: 100% !important;
+  height: 168px !important;
+  min-height: 168px !important;
+  padding: 8px 10px !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  border-bottom: 1px solid #e2e7ef !important;
+}
+#benchmark .taxonomy-thumb-image img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+#benchmark .taxonomy-card figcaption {
+  display: flex !important;
+  min-height: 58px !important;
+  height: 58px !important;
+  padding: 9px 11px !important;
+  align-items: center !important;
+  gap: 9px !important;
+}
+#benchmark .taxonomy-cards .taxonomy-card figcaption b {
+  min-width: 40px !important;
+  height: 29px !important;
+  padding: 0 8px !important;
+}
+#benchmark .taxonomy-card figcaption span {
+  font-size: .8rem !important;
+  line-height: 1.2 !important;
+}
+#benchmark .taxonomy-source-note {
+  margin: 9px 0 0 !important;
+  font-size: .72rem !important;
+}
+
+/* Keep the previously approved chart and content layout untouched. */
+@media (min-width: 1100px) and (max-width: 1320px) {
+  #motivation .motivation-paper-figure {
+    width: min(calc(100% - 44px), 900px) !important;
+  }
+  #benchmark .benchmark-overview-compact {
+    max-width: 1200px !important;
+  }
+}

@@ -1,0 +1,43 @@
+/* Final content-preserving layout adjustments.
+   No approved copy, data, section order, or Motivation content is changed. */
+
+/* Give the formal paper title enough horizontal room and reduce its scale so it
+   reads as a compact academic title rather than a poster headline. */
+.publication-header.container {
+  width: min(1240px, calc(100% - 64px)) !important;
+  max-width: 1240px !important;
+}
+
+.academic-paper-title {
+  max-width: 1220px !important;
+  font-size: clamp(2.05rem, 2.35vw, 2.55rem) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.028em !important;
+  text-wrap: balance;
+}
+
+/* The duplicated homepage figure has been removed. Keep a compact transition
+   from the publication metadata to the verified headline metrics. */
+.academic-paper-hero {
+  padding-bottom: 28px !important;
+}
+
+.metrics-grid {
+  margin-top: 30px !important;
+}
+
+@media (min-width: 1400px) {
+  .academic-paper-title {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .publication-header.container {
+    width: min(1040px, calc(100% - 56px)) !important;
+  }
+  .academic-paper-title {
+    max-width: 1000px !important;
+    font-size: 2.15rem !important;
+  }
+}
