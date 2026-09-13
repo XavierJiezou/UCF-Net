@@ -13,8 +13,8 @@ An Uncertainty-Aware Cascaded Fusion Network for Generalizable Deepfake Image De
 <br>
 [![HuggingFace Paper](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Daily%20Paper-blue)](https://huggingface.co/papers/2609.07670)
 [![HuggingFace Space](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Space-yellow)](https://huggingface.co/spaces/csYiZhou/UCF-Net)
-[![HuggingFace Models](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Models-green)](https://huggingface.co/XavierJiezou/ucfnet-models)
-[![HuggingFace Datasets](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Datasets-orange)](https://huggingface.co/datasets/XavierJiezou/ucfnet-datasets)
+[![HuggingFace Models](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Models-green)](https://huggingface.co/XavierJiezou/ucfnet-models/tree/main)
+[![HuggingFace Datasets](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Datasets-orange)](https://huggingface.co/datasets/XavierJiezou/ucfnet-datasets/tree/main)
 <!--[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)-->
 
 ![framework](docs/framework.png)
